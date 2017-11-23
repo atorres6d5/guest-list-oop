@@ -5,6 +5,7 @@ console.log(`Let's start a party!`)
 class Venue {
   constructor (capacity) {
     this.capacity = capacity
+
   }
 }
 
@@ -27,6 +28,11 @@ class GuestList {
   addGuests(...guests) {
     this.guests = this.guests.concat(guests)
   }
+
+  get guest() {
+    return this.guests
+  }
+
 }
 
 class Party {
@@ -52,6 +58,20 @@ class Party {
   get population () {
     return this.currentGuests.length
   }
+
+  get checklist(guest){
+    if(this.guestlist.guests.includes(guest))
+    return true
+    else return false
+  }
+
+  set addToParty(guest){
+    if(this.checklist(guest)){
+      this.enter(guest)
+    }
+    else{return{message: "you're not invited"}}
+  }
+
 }
 
 const kevin = new Guest('Kevin', true)
